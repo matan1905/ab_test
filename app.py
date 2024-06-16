@@ -8,8 +8,13 @@ import requests
 
 app = Flask(__name__)
 redis_host = os.environ.get('REDIS_HOST', 'localhost')
-redis_client = redis.Redis(host=redis_host, port=6379)
-celery = Celery(app.name, broker='redis://' + redis_host + ':6379')
+redis_password = os.environ.get('REDIS_PASSWORD', None)
+redis_client = redis.Redis(host=redis_host,
+                           password=redis_password,
+                           port=6379)
+celery = Celery(app.name, broker='redis://'
+                                 + (':' + redis_password+'@' if redis_password else '')
+                                 + redis_host + ':6379')
 
 WEBHOOK_URL = os.environ.get('WEBHOOK_URL', 'http://localhost:7744')
 SIGNIFICANCE_LEVEL = float(os.environ.get('SIGNIFICANCE_LEVEL', 0.95))
