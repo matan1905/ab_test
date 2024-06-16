@@ -13,7 +13,7 @@ celery = Celery(app.name, broker='redis://' + redis_host + ':6379')
 
 WEBHOOK_URL = os.environ.get('WEBHOOK_URL', 'http://localhost:7744')
 SIGNIFICANCE_LEVEL = float(os.environ.get('SIGNIFICANCE_LEVEL', 0.95))
-MAX_SAMPLES = int(os.environ.get('MAX_SAMPLES', 100))
+MAX_SAMPLES = int(os.environ.get('MAX_SAMPLES', 500))
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
