@@ -1,0 +1,6 @@
+flask
+redis
+statsmodels
+requests
+celery
+scipya
