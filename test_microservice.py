@@ -40,45 +40,45 @@ def clear_redis():
     redis_client.flushall()
 
 # Test scenario 1: Control group wins
-# def test_scenario_1():
-#     result_data.clear()
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
-#     send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
-#     send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
-#     send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
-#     send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
-#     send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
-#     time.sleep(1)
-#     assert len(result_data) >= 1, "Result not received"
-#     assert result_data[0]["control_wins"] is True, "Control group did not win"
-#
+def test_scenario_1():
+    result_data.clear()
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
+    send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
+    send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
+    send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
+    send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user1", "experiment_id": "exp1", "is_control": True, "event": "goal"})
+    send_request({"ref_id": "user2", "experiment_id": "exp1", "is_control": False, "event": "start"})
+    time.sleep(1)
+    assert len(result_data) >= 1, "Result not received"
+    assert result_data[0]["control_wins"] is True, "Control group did not win"
+
 # # Test scenario 2: Variation group wins
-# def test_scenario_2():
-#     result_data.clear()
-#     send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
-#     send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
-#     send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
-#     send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
-#     send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
-#     time.sleep(1)
-#     assert len(result_data) >= 1, "Result not received"
-#     assert result_data[0]["control_wins"] is False, "Variation group did not win"
+def test_scenario_2():
+    result_data.clear()
+    send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
+    send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
+    send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
+    send_request({"ref_id": "user3", "experiment_id": "exp2", "is_control": True, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "start"})
+    send_request({"ref_id": "user4", "experiment_id": "exp2", "is_control": False, "event": "goal"})
+    time.sleep(1)
+    assert len(result_data) >= 1, "Result not received"
+    assert result_data[0]["control_wins"] is False, "Variation group did not win"
 
 # Test scenario 3: Maximum samples reached, control group wins
 def test_scenario_3():
@@ -94,14 +94,14 @@ def test_scenario_3():
     assert result_data[0]["control_wins"] is True, "Control group did not win"
 
 # Test scenario 4: Maximum samples reached, variation group wins
-# def test_scenario_4():
-#     result_data.clear()
-#     for i in range(1, 51):
-#         send_request({"ref_id": f"user{i}", "experiment_id": "exp4", "is_control": False, "event": "start"})
-#         if i % 50 == 0:
-#             send_request({"ref_id": f"user{i}", "experiment_id": "exp4", "is_control": False, "event": "goal"})
-#     for i in range(0, 51):
-#         send_request({"ref_id": f"user{i}", "experiment_id": "exp4", "is_control": True, "event": "start"})
-#     time.sleep(4)
-#     assert len(result_data) >= 1, "Result not received"
-#     assert result_data[0]["control_wins"] is False, "Variation group did not win"
+def test_scenario_4():
+    result_data.clear()
+    for i in range(1, 51):
+        send_request({"ref_id": f"user{i}", "experiment_id": "exp4", "is_control": False, "event": "start"})
+        if i % 50 == 0:
+            send_request({"ref_id": f"user{i}", "experiment_id": "exp4", "is_control": False, "event": "goal"})
+    for i in range(0, 51):
+        send_request({"ref_id": f"user{i}", "experiment_id": "exp4", "is_control": True, "event": "start"})
+    time.sleep(4)
+    assert len(result_data) >= 1, "Result not received"
+    assert result_data[0]["control_wins"] is False, "Variation group did not win"
