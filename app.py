@@ -9,7 +9,7 @@ import logging
 redis_url = os.environ.get('REDIS_URL', 'redis://localhost:6379')
 redis_client = redis.Redis.from_url(redis_url)
 SIGNIFICANCE_LEVEL = float(os.environ.get('SIGNIFICANCE_LEVEL', 0.95))
-MAX_SAMPLES = int(os.environ.get('MAX_SAMPLES', 500))
+MAX_SAMPLES = int(os.environ.get('MAX_SAMPLES', 100))
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ def process_record(data):
 
     if event == 'start':
         redis_client.hincrby(f'{experiment_id}:starts', 'control' if is_control else 'variation', 1)
-        logger.debug(
+        logger.info(
             f"Experiment {experiment_id} stats: control_goals={control_goals}, control_starts={control_starts}, variation_goals={variation_goals}, variation_starts={variation_starts}")
 
         # Check maximum samples
@@ -51,7 +51,7 @@ def process_record(data):
             logger.info(f"Maximum samples reached for experiment {experiment_id}. Winner: {'control' if control else 'variation'}")
     elif event == 'goal':
         redis_client.hincrby(f'{experiment_id}:goals', 'control' if is_control else 'variation', 1)
-        logger.debug(f"Experiment {experiment_id} stats: control_goals={control_goals}, control_starts={control_starts}, variation_goals={variation_goals}, variation_starts={variation_starts}")
+        logger.info(f"Experiment {experiment_id} stats: control_goals={control_goals}, control_starts={control_starts}, variation_goals={variation_goals}, variation_starts={variation_starts}")
 
         if control_starts > 0 and variation_starts > 0:
             control_alpha = control_goals + 1
